@@ -1,15 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOX</title>
+    <title>LOSHARA</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+
+        .troll-text {
+            font-size: 100px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            gap: 10px;
+        }
+
+        .letter {
+            animation: bounce 1s infinite ease-in-out alternate, colorChange 2s infinite alternate;
+            text-shadow: 5px 5px 10px red, -5px -5px 10px blue;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            20% { color: orange; }
+            40% { color: yellow; }
+            60% { color: lime; }
+            80% { color: cyan; }
+            100% { color: magenta; }
+        }
+    </style>
 </head>
 <body>
-      </audio>
-      
-      <script>
-     window.onload = function() {
+    <div class="troll-text">
+        <span class="letter" style="animation-delay: 0s;">L</span>
+        <span class="letter" style="animation-delay: 0.1s;">O</span>
+        <span class="letter" style="animation-delay: 0.2s;">S</span>
+        <span class="letter" style="animation-delay: 0.3s;">H</span>
+        <span class="letter" style="animation-delay: 0.4s;">A</span>
+        <span class="letter" style="animation-delay: 0.5s;">R</span>
+        <span class="letter" style="animation-delay: 0.6s;">A</span>
+    </div>
+
+    <script>
+        window.onload = function() {
             let audio = new Audio("audio.mp3"); // Вкажи шлях до файлу
             audio.loop = true; // Повторення без зупинки
             audio.volume = 1.0; 
@@ -20,7 +67,6 @@
                 }, { once: true });
             });
         };
-      </script>
-      
+    </script>
 </body>
 </html>
