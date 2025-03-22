@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOX</title>
+</head>
+<body>
+      </audio>
+      
+      <script>
+     window.onload = function() {
+            let audio = new Audio("audio.mp3"); // Вкажи шлях до файлу
+            audio.loop = true; // Повторення без зупинки
+            audio.volume = 1.0; 
+            audio.play().catch(error => {
+                console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
+                document.addEventListener("click", () => {
+                    audio.play();
+                }, { once: true });
+            });
+        };
+      </script>
+      
+</body>
+</html>
