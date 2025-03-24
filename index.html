@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOSHARA</title>
+    <!-- Підключення шрифту -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
         body {
             margin: 0;
@@ -13,10 +16,11 @@
             align-items: center;
             height: 100vh;
             background-color: black;
+            font-family: 'Press Start 2P', cursive; /* Шрифт застосовано до всього */
         }
 
         .troll-text {
-            font-size: 10vw; /* Адаптивний розмір шрифту */
+            font-size: 10vw;
             font-weight: bold;
             text-transform: uppercase;
             display: flex;
@@ -66,8 +70,8 @@
 
     <script>
         window.onload = function() {
-            let audio = new Audio("audio.mp3"); // Вкажи шлях до файлу
-            audio.loop = true; // Повторення без зупинки
+            let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
+            audio.loop = true; 
             audio.volume = 1.0; 
             audio.play().catch(error => {
                 console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
