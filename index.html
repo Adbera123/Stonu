@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOSHARA</title>
-    <!-- Підключення шрифту -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
@@ -16,7 +15,8 @@
             align-items: center;
             height: 100vh;
             background-color: black;
-            font-family: 'Press Start 2P', cursive; /* Шрифт застосовано до всього */
+            font-family: 'Press Start 2P', cursive;
+            flex-direction: column;
         }
 
         .troll-text {
@@ -25,6 +25,8 @@
             text-transform: uppercase;
             display: flex;
             gap: 1vw;
+            opacity: 0; /* Спочатку приховано */
+            transition: opacity 1s ease-in-out;
         }
 
         .letter {
@@ -47,23 +49,44 @@
             100% { color: rgb(255, 255, 255); }
         }
 
-        /* Налаштування для мобільних */
+        /* Кнопка */
+        .start-button {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            padding: 15px 30px;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: grey;
+            color: white;
+        }
+
+        /* Адаптація під мобільні пристрої */
         @media (max-width: 600px) {
             .troll-text {
-                font-family: 'Press Start 2P', cursive !important; /* Примусове застосування шрифту */
                 font-size: 12vw;
                 gap: 2vw;
             }
             .letter {
-                animation: bounce 1s infinite ease-in-out alternate, colorChange 2s infinite alternate;
-                 text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
+                text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
+            }
+            .start-button {
+                font-size: 12px;
+                padding: 10px 20px;
             }
         }
       
     </style>
 </head>
 <body>
-    <div class="troll-text">
+
+    <button class="start-button" onclick="start()">Натисни, щоб продовжити</button>
+
+    <div class="troll-text" id="text">
         <span class="letter" style="animation-delay: 0s;">L</span>
         <span class="letter" style="animation-delay: 0.1s;">O</span>
         <span class="letter" style="animation-delay: 0.2s;">S</span>
@@ -74,17 +97,21 @@
     </div>
 
     <script>
-        window.onload = function() {
+        function start() {
+            let text = document.getElementById("text");
+            let button = document.querySelector(".start-button");
+            text.style.opacity = "1"; // Показати текст
+            button.style.display = "none"; // Сховати кнопку
+
+            // Відтворення звуку
             let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
             audio.loop = true; 
             audio.volume = 1.0; 
             audio.play().catch(error => {
                 console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
-                document.addEventListener("click", () => {
-                    audio.play();
-                }, { once: true });
             });
-        };
+        }
     </script>
+
 </body>
 </html>
