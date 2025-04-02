@@ -65,6 +65,23 @@
             color: white;
         }
 
+        /* Завантажувальний значок */
+        .loader {
+            display: none; /* Спочатку прихований */
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Адаптація під мобільні пристрої */
         @media (max-width: 600px) {
             .troll-text {
@@ -86,6 +103,8 @@
 
     <button class="start-button" onclick="start()">Натисни, щоб продовжити</button>
 
+    <div class="loader" id="loader"></div>
+
     <div class="troll-text" id="text">
         <span class="letter" style="animation-delay: 0s;">L</span>
         <span class="letter" style="animation-delay: 0.1s;">O</span>
@@ -100,16 +119,23 @@
         function start() {
             let text = document.getElementById("text");
             let button = document.querySelector(".start-button");
-            text.style.opacity = "1"; // Показати текст
-            button.style.display = "none"; // Сховати кнопку
+            let loader = document.getElementById("loader");
 
-            // Відтворення звуку
-            let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
-            audio.loop = true; 
-            audio.volume = 1.0; 
-            audio.play().catch(error => {
-                console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
-            });
+            button.style.display = "none"; // Сховати кнопку
+            loader.style.display = "block"; // Показати значок завантаження
+
+            setTimeout(() => {
+                loader.style.display = "none"; // Прибрати значок завантаження
+                text.style.opacity = "1"; // Показати текст
+
+                // Відтворення звуку
+                let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
+                audio.loop = true; 
+                audio.volume = 1.0; 
+                audio.play().catch(error => {
+                    console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
+                });
+            }, 2000); // Час завантаження (2 секунди)
         }
     </script>
 
