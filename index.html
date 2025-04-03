@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOSHARA</title>
+    <!-- Підключення шрифту -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
@@ -15,8 +16,7 @@
             align-items: center;
             height: 100vh;
             background-color: black;
-            font-family: 'Press Start 2P', cursive;
-            flex-direction: column;
+            font-family: 'Press Start 2P', cursive; /* Шрифт застосовано до всього */
         }
 
         .troll-text {
@@ -25,8 +25,6 @@
             text-transform: uppercase;
             display: flex;
             gap: 1vw;
-            opacity: 0; /* Спочатку приховано */
-            transition: opacity 1s ease-in-out;
         }
 
         .letter {
@@ -49,63 +47,23 @@
             100% { color: rgb(255, 255, 255); }
         }
 
-        /* Кнопка */
-        .start-button {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 16px;
-            padding: 15px 30px;
-            background-color: white;
-            border: 2px solid black;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .start-button:hover {
-            background-color: grey;
-            color: white;
-        }
-
-        /* Завантажувальний значок */
-        .loader {
-            display: none; /* Спочатку прихований */
-            width: 50px;
-            height: 50px;
-            border: 5px solid white;
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-top: 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Адаптація під мобільні пристрої */
+        /* Налаштування для мобільних */
         @media (max-width: 600px) {
             .troll-text {
+                font-family: 'Press Start 2P', cursive !important; /* Примусове застосування шрифту */
                 font-size: 12vw;
                 gap: 2vw;
             }
             .letter {
-                text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
-            }
-            .start-button {
-                font-size: 12px;
-                padding: 10px 20px;
+                animation: bounce 1s infinite ease-in-out alternate, colorChange 2s infinite alternate;
+                 text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
             }
         }
       
     </style>
 </head>
 <body>
-
-    <button class="start-button" onclick="start()">Натисни, щоб продовжити</button>
-
-    <div class="loader" id="loader"></div>
-
-    <div class="troll-text" id="text">
+    <div class="troll-text">
         <span class="letter" style="animation-delay: 0s;">L</span>
         <span class="letter" style="animation-delay: 0.1s;">O</span>
         <span class="letter" style="animation-delay: 0.2s;">S</span>
@@ -116,28 +74,17 @@
     </div>
 
     <script>
-        function start() {
-            let text = document.getElementById("text");
-            let button = document.querySelector(".start-button");
-            let loader = document.getElementById("loader");
-
-            button.style.display = "none"; // Сховати кнопку
-            loader.style.display = "block"; // Показати значок завантаження
-
-            setTimeout(() => {
-                loader.style.display = "none"; // Прибрати значок завантаження
-                text.style.opacity = "1"; // Показати текст
-
-                // Відтворення звуку
-                let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
-                audio.loop = true; 
-                audio.volume = 1.0; 
-                audio.play().catch(error => {
-                    console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
-                });
-            }, 2000); // Час завантаження (2 секунди)
-        }
+        window.onload = function() {
+            let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
+            audio.loop = true; 
+            audio.volume = 1.0; 
+            audio.play().catch(error => {
+                console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
+                document.addEventListener("click", () => {
+                    audio.play();
+                }, { once: true });
+            });
+        };
     </script>
-
 </body>
-</html>
+</html> 
