@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOSHARA</title>
-    <!-- Підключення шрифту -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             margin: 0;
@@ -16,7 +15,7 @@
             align-items: center;
             height: 100vh;
             background-color: black;
-            font-family: 'Press Start 2P', cursive; /* Шрифт застосовано до всього */
+            font-family: 'Press Start 2P', cursive;
         }
 
         .troll-text {
@@ -26,36 +25,6 @@
             display: flex;
             gap: 1vw;
         }
-        .telegram-button {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 16px;
-            padding: 15px;
-            background-color: white;
-            border: 2px solid black;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            text-align: center;
-            color: black;
-            z-index: 10;
-            visibility: visible;
-            }
-
-        .telegram-button:hover {
-            background-color: grey;
-            color: white;
-}
-        .telegram-button {
-            width: 90%;
-            max-width: 500px;
-            border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            box-sizing: border-box;
-}
-
 
         .letter {
             animation: bounce 1s infinite ease-in-out alternate, colorChange 2s infinite alternate;
@@ -67,23 +36,6 @@
             50% { transform: translateY(-15%); }
             100% { transform: translateY(0); }
         }
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.telegram-link-wrapper {
-  position: fixed;
-  bottom: 30px;
-  text-align: center;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.telegram-link-wrapper.show {
-  opacity: 1;
-}
 
         @keyframes colorChange {
             0% { color: rgb(0, 0, 0); }
@@ -94,28 +46,63 @@
             100% { color: rgb(255, 255, 255); }
         }
 
-        /* Налаштування для мобільних */
+        .telegram-link-wrapper {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
+        .telegram-button {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            padding: 15px;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            color: black;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .telegram-button:hover {
+            background-color: grey;
+            color: white;
+        }
+
         @media (max-width: 600px) {
             .troll-text {
-                font-family: 'Press Start 2P', cursive !important; /* Примусове застосування шрифту */
                 font-size: 12vw;
                 gap: 2vw;
             }
+
             .letter {
-                animation: bounce 1s infinite ease-in-out alternate, colorChange 2s infinite alternate;
-                 text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
+                text-shadow: 3px 3px 6.25px grey, -3px -3px 6.25px whitesmoke !important;
             }
-        
+
             .telegram-button {
                 font-size: 12px;
                 padding: 12px;
                 gap: 8px;
-             }
+            }
 
             .telegram-link-wrapper {
                 bottom: 10px;
             }
-}
+        }
     </style>
 </head>
 <body>
@@ -129,20 +116,18 @@
         <span class="letter" style="animation-delay: 0.6s;">A</span>
     </div>
     
-<div class="telegram-link-wrapper" id="tg-button">
-    <a class="telegram-button" href="https://t.me/nfctagaber" target="_blank">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 240 240" fill="currentColor">
-        <path d="M120 0C53.728 0 0 53.728 0 120s53.728 120 120 120 120-53.728 120-120S186.272 0 120 0zm56.457 83.094-20.147 94.964c-1.517 6.728-5.51 8.388-11.154 5.217l-30.803-22.712-14.856 14.295c-1.64 1.64-3.003 3.003-6.146 3.003l2.195-31.094 56.583-51.062c2.465-2.195-.537-3.417-3.808-1.22l-69.983 44.032-30.157-9.425c-6.57-2.053-6.728-6.57 1.365-9.717l117.685-45.462c5.47-2.025 10.254 1.22 8.439 9.386z"/>
-      </svg>
-      Перейти в Telegram
-    </a>
-  </div>
+    <div class="telegram-link-wrapper" id="tg-button">
+        <a class="telegram-button" href="https://t.me/nfctagaber" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" width="20" height="20">
+            Перейти в Telegram
+        </a>
+    </div>
 
     <script>
         window.onload = function() {
             let audio = new Audio("audio.mp3"); // Вкажи правильний шлях до файлу
-            audio.loop = true; 
-            audio.volume = 1.0; 
+            audio.loop = true;
+            audio.volume = 1.0;
             audio.play().catch(error => {
                 console.log("Автовідтворення заблоковане, очікуємо дії користувача...");
                 document.addEventListener("click", () => {
@@ -152,4 +137,4 @@
         };
     </script>
 </body>
-</html> 
+</html>
