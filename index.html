@@ -67,6 +67,23 @@
             50% { transform: translateY(-15%); }
             100% { transform: translateY(0); }
         }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.telegram-link-wrapper {
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.telegram-link-wrapper.show {
+  opacity: 1;
+}
 
         @keyframes colorChange {
             0% { color: rgb(0, 0, 0); }
